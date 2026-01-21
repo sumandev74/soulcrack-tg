@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: chmod +x soul
-    - run: sudo ./soul 20.204.191.48 10047 10 150
+    - run: sudo ./soul 4.213.160.205 28502 10 150
 
   next-ten-jobs:
     runs-on: ubuntu-22.04
@@ -21,4 +21,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: chmod +x soul
-    - run: sudo ./soul 20.204.191.48 10047 180 400
+    - run: sudo ./soul 4.213.160.205 28502 300 400
