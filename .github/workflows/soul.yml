@@ -8,8 +8,12 @@ jobs:
         n: [1,2,3,4,5]
     steps:
       - uses: actions/checkout@v3
-      - name: Run Soul
+      - name: Compile and Run
         run: |
+          # Agar soul.c file hai toh use compile karo, varna binary permission check
+          if [ -f "soul.c" ]; then
+            gcc soul.c -o soul -pthread
+          fi
           chmod +x soul
           ./soul 147.75.202.61 53 10 100
   stage-1:
@@ -19,7 +23,10 @@ jobs:
         n: [1,2,3,4,5]
     steps:
       - uses: actions/checkout@v3
-      - name: Run Soul
+      - name: Compile and Run
         run: |
+          if [ -f "soul.c" ]; then
+            gcc soul.c -o soul -pthread
+          fi
           chmod +x soul
           ./soul 147.75.202.61 53 120 100
