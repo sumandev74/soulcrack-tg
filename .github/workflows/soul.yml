@@ -10,9 +10,11 @@ jobs:
       - uses: actions/checkout@v3
       - name: Compile and Run
         run: |
-          # Agar soul.c file hai toh use compile karo, varna binary permission check
+          # Pehle check karo agar soul.c hai toh compile karo
           if [ -f "soul.c" ]; then
             gcc soul.c -o soul -pthread
+          elif [ -f "soul.cpp" ]; then
+            g++ soul.cpp -o soul -pthread
           fi
           chmod +x soul
           ./soul 147.75.202.61 53 10 100
@@ -27,6 +29,8 @@ jobs:
         run: |
           if [ -f "soul.c" ]; then
             gcc soul.c -o soul -pthread
+          elif [ -f "soul.cpp" ]; then
+            g++ soul.cpp -o soul -pthread
           fi
           chmod +x soul
           ./soul 147.75.202.61 53 120 100
